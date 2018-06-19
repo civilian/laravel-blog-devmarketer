@@ -11,14 +11,18 @@
 
         <div class="col-md-4">
             <div class="card card-block bg-faded">
+              <dl class="dl-horizontal">
+                  <label>Url Slug:</label>
+                  <p><a href="{{ url($post->slug) }}">{{ url($post->slug) }}</a></p>
+              </dl>
                 <dl class="dl-horizontal">
-                    <dt>Created At:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
+                    <label>Created At:</label>
+                    <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                 </dl>
 
                 <dl class="dl-horizontal">
-                    <dt>Last Updated:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
+                    <label>Last Updated:</label>
+                    <p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
                 </dl>
 
                 <hr>
