@@ -20,21 +20,23 @@
         <a class="nav-link" href="/contact">Contact</a>
       </li>
     </ul>
-    <ul class="navbar-nav navbar-left">
-        <li class="nav-item dropdown">
+    <ul class="navbar-nav navbar-right">
+        @if (Auth::check())
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              My Account
+              Hello {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('posts.index')}}">Post</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
               {!! Form::open(['route' => 'logout', 'method' => 'POST'])!!}
                 {{ Form::submit('Logout', ['class' => 'dropdown-item'])}}
               {!! Form::close() !!}
             </div>
-        </li>
+          </li>
+        @else
+            <a href="{{ route('login') }}" class="btn btn-default">Login</a>
+        @endif
+
     </ul>
   </div>
 </nav>
