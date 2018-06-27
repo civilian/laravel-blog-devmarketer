@@ -30,7 +30,9 @@
               <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item" href="#">Logout</a>
+              {!! Form::open(['route' => 'logout', 'method' => 'POST'])!!}
+                {{ Form::submit('Logout', ['class' => 'dropdown-item'])}}
+              {!! Form::close() !!}
             </div>
         </li>
     </ul>

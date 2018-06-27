@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
+
     @include('partials._head')
 
     @yield('stylesheets')
@@ -16,15 +16,17 @@
 
       @include('partials._messages')
 
+      {{ Auth::check() ? 'Logged In': 'Logged Out'}}
+
       @yield('content')
 
       @include('partials._footer')
 
     </div>
-      
+
     @include('partials._javascripts')
 
     @yield('scripts')
-    
+
   </body>
 </html>
