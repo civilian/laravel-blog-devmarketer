@@ -27,7 +27,8 @@
               Hello {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('posts.index')}}">Post</a>
+              <a class="dropdown-item" href="{{ route('posts.index')}}">Posts</a>
+              <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
               {!! Form::open(['route' => 'logout', 'method' => 'POST'])!!}
                 {{ Form::submit('Logout', ['class' => 'dropdown-item'])}}
               {!! Form::close() !!}
