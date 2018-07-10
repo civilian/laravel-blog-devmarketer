@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Session;
 use Illuminate\Validation\Rule;
 
@@ -34,7 +35,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -62,6 +64,8 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        $post->tags()->sync($request->tags, false);
 
         Session::flash('success','The blog post was successfully save!');
 
@@ -95,7 +99,14 @@ class PostController extends Controller
         foreach ($categories as $category) {
             $categoriesAssociativeArray[$category->id] = $category->name;
         }
-        return view('posts.edit')->withPost($post)->withCategories($categoriesAssociativeArray);
+
+        $tags = Tag::all();
+        $tagsAssociativeArray = [];
+        foreach ($tags as $tag) {
+          $tagsAssociativeArray[$tag->id] = $tag->name;
+        }
+
+        return view('posts.edit')->withPost($post)->withCategories($categoriesAssociativeArray)->withTags($tagsAssociativeArray);
     }
 
     /**
@@ -125,6 +136,8 @@ class PostController extends Controller
         $post->body = $request->input('body');
 
         $post->save();
+
+        $post->tags()->sync($request->tags, true);
 
         // set flash data with success message
         Session::flash('success', 'This post was successfully saved.');
