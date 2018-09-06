@@ -11,8 +11,8 @@
 @section('content')
 
   <div class="row">
-      {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
       <div class="col-md-8">
+        {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
           {{ Form::label ('title', 'Title:')}}
           {{ Form::text('title', null, ['class' => 'form-control input-lg']) }}
 
@@ -65,7 +65,7 @@
 
     <script type="text/javascript">
       $('.select2-multi').select2();
-      
+
     </script>
 
 @endsection
